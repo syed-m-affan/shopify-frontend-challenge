@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Component } from 'react';
 
@@ -44,7 +44,7 @@ class App extends Component {
     let prompts = this.state.prompts
     let engine = this.state.engine
     let text = this.state.text
-    let secret = "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"
+    let secret = process.env.OPENAI_SECRET
     
 
     const data = {
@@ -56,7 +56,7 @@ class App extends Component {
       presence_penalty: 0.0,
       };
       
-    let completion = await fetch("https://api.openai.com/v1/engines/"+engine+"/completions", {
+    let completion = await fetch("https://polar-chamber-58200.herokuapp.com/https://api.openai.com/v1/engines/"+engine+"/completions", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -102,8 +102,8 @@ class App extends Component {
       <form onSubmit={this.onSubmit}>
         <input type="text" onChange={this.onChangeText} value={this.state.text}></input>
         <button type='submit' >Submit</button>
-        <select onChange={this.onChangeEngine}>
-          <option value="text-curie-001" selected>text-curie-001</option>
+        <select onChange={this.onChangeEngine} defaultValue="text-curie-001">
+          <option value="text-curie-001">text-curie-001</option>
           <option value="text-babbage-001">text-babbage-001</option>
           <option value ="text-ada-001">text-ada-001</option>
         </select>
