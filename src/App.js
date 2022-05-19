@@ -1,4 +1,4 @@
-
+import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 
@@ -44,8 +44,7 @@ class App extends Component {
     let prompts = this.state.prompts
     let engine = this.state.engine
     let text = this.state.text
-    let secret = "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"
-
+    let secret = "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"
     
 
     const data = {
@@ -58,14 +57,20 @@ class App extends Component {
       };
       
     let completion = await fetch("https://api.openai.com/v1/engines/"+engine+"/completions", {
-                                  method: "POST",
-                                  headers: {
-                                    "Content-Type": "application/json",
-                                    Authorization: `Bearer ${secret}`,
-                                  },
-                                  body: JSON.stringify(data),
-                                  })
-                    .then(res => res.json())
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${secret}`,
+            },
+            body: JSON.stringify(data),
+            }).then(res => res.json())
+
+    
+
+    console.log(completion.choices[0].text)
+      
+      
+
     prompts.push({prompt:this.state.text, response: completion.choices[0].text})
     this.setState({
       prompts: prompts,
@@ -97,8 +102,8 @@ class App extends Component {
       <form onSubmit={this.onSubmit}>
         <input type="text" onChange={this.onChangeText} value={this.state.text}></input>
         <button type='submit' >Submit</button>
-        <select onChange={this.onChangeEngine} defaultValue={"text-curie-001"}>
-          <option value="text-curie-001">text-curie-001</option>
+        <select onChange={this.onChangeEngine}>
+          <option value="text-curie-001" selected>text-curie-001</option>
           <option value="text-babbage-001">text-babbage-001</option>
           <option value ="text-ada-001">text-ada-001</option>
         </select>
