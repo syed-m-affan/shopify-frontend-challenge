@@ -56,7 +56,7 @@ class App extends Component {
       presence_penalty: 0.0,
       };
       
-    let completion = await fetch("https://polar-chamber-58200.herokuapp.com/https://api.openai.com/v1/engines/"+engine+"/completions", {
+    let completion = await fetch("https://api.openai.com/v1/engines/"+engine+"/completions", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
