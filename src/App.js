@@ -48,6 +48,7 @@ class App extends Component {
     let engine = this.state.engine
     let text = this.state.text
     let secret = process.env.OPENAI_SECRET
+    console.log(secret)
     
 
     const data = {
