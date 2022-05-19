@@ -71,7 +71,7 @@ class App extends Component {
 
           
 
-    prompts.push({prompt:this.state.text, response: completion.choices[0].text})
+    prompts.unshift({prompt:this.state.text, response: completion.choices[0].text})
     this.setState({
       prompts: prompts,
     })
