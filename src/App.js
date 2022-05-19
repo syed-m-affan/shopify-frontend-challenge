@@ -44,7 +44,7 @@ class App extends Component {
     let prompts = this.state.prompts
     let engine = this.state.engine
     let text = this.state.text
-    let secret = "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"
+    let secret = process.env.OPENAI_SECRET
     
 
     const data = {
