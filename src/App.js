@@ -69,11 +69,7 @@ class App extends Component {
             body: JSON.stringify(data),
             }).then(res => res.json())
 
-    
-
-    console.log(completion.choices[0].text)
-      
-      
+          
 
     prompts.push({prompt:this.state.text, response: completion.choices[0].text})
     this.setState({
@@ -90,7 +86,7 @@ class App extends Component {
                   <td>
                     {o.prompt}
                   </td>
-                  <td>
+                  <td bgColor={"#f2f2f2"}>
                     {o.response}
                   </td>
                 </tr>
@@ -102,17 +98,24 @@ class App extends Component {
   render(){
   return (
     <div className="App">
-      <header><b>Shopify Frontend Challenge</b></header>
-      <form onSubmit={this.onSubmit}>
-        <input type="text" onChange={this.onChangeText} value={this.state.text}></input>
+      <header align="center"><b>Shopify Frontend Challenge</b></header>
+      <form onSubmit={this.onSubmit} align="center">
+        <div>
+          <label for="prompt">Enter Prompt:</label>
+          <input type="text" onChange={this.onChangeText} value={this.state.text} id="prompt"></input>
+        </div>
+        <div>
+          <label for="engine">Choose Engine:</label>
+          <select onChange={this.onChangeEngine} defaultValue="text-curie-001" id="engine">
+            <option value="text-curie-001">text-curie-001</option>
+            <option value="text-babbage-001">text-babbage-001</option>
+            <option value ="text-ada-001">text-ada-001</option>
+          </select>
+        </div>
         <button type='submit' >Submit</button>
-        <select onChange={this.onChangeEngine} defaultValue="text-curie-001">
-          <option value="text-curie-001">text-curie-001</option>
-          <option value="text-babbage-001">text-babbage-001</option>
-          <option value ="text-ada-001">text-ada-001</option>
-        </select>
+        
       </form>
-      <table align="center">
+      <table align="center" cellSpacing={"25"}>
         <thead>
           <tr>
             <th>Prompt</th>
